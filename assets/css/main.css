@@ -1,0 +1,25 @@
+body {
+    background-image: url("../images/KingsCross.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    color: black;
+}
+
+div .opaque {
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.card {
+    background-color: rgba(245, 245, 245, .89);
+}
+
+.card-header,
+.card-footer {
+    background-color: rgba(245, 245, 245, .2);
+}
+
+#addBtn{
+    float:right;
+}

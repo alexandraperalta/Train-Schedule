@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/main.css" />
+    <script src="assets/scripts/logic.js"></script>
+    <!-- Moment.js Reference -->
+    <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center opaque">
+            <h1>King's Cross</h1>
+            <h3>Platform 9 3/4</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        <div class="card-title text-center">
+                            <h3>Hogwarts Express</h3>
+                            <input id="addBtn" type="button" 
+                            value="Add Train" 
+                            onclick="window.location.href='#add'" />  
+                                                    
+                        </div>                        
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h4>Train Name</h4>
+                                        </th>
+                                        <th>
+                                            <h4>Destination</h4>
+                                        </th>
+                                        <th>
+                                            <h4>Frequency (min)</h4>
+                                        </th>
+                                        <th>
+                                            <h4>Next Arrival</h4>
+                                        </th>
+                                        <th>
+                                            <h4>Minutes Away</h4>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody  id="trainGrid" ></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-header bg-warning ">
+                            <div class="card-title ">
+                                <h3>Add Train</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="nameInput">Train Name</label>
+                                        <input type="text" class="form-control" id="nameInput">
+                                        <label for="destInput">Destination</label>
+                                        <input type="text" class="form-control" id="destInput">
+                                        <label for="startTimeInput">First Train Time (HH:mm - Military Time)</label>
+                                        <input type="text" type="time" class="form-control" id="startTimeInput" placeholder="HH:mm">
+                                        <label for="freqInput">Frequency in minutes</label>
+                                        <input type="number" class="form-control" id="freqInput">
+                                    </div>
+                                </form>
+                                <button id="add">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</body>
+
+</html>
