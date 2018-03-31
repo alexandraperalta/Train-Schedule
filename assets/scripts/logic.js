@@ -15,6 +15,7 @@ var database = firebase.database();
 
 $(document).ready(function () {
     $('#add').on('click', function () {
+
         console.log("add click");
         // get the textbox values
         var name = $('#nameInput').val().trim();
@@ -22,21 +23,34 @@ $(document).ready(function () {
         var startTime = $('#startTimeInput').val().trim();
         var freq = $('#freqInput').val().trim();
 
-        $('#nameInput').val("");
-        $('#destInput').val("");
-        $('#startTimeInput').val("");
-        $('#freqInput').val("");
+        var anyFieldsMissing = (name == "" || dest == "" || startTime == "" || freq == "");
 
-        database.ref("/trainData").push({
-            trainName: name,
-            trainDest: dest,
-            trainStartTime: startTime,
-            trainFreq: freq
-        });
+        if (anyFieldsMissing) {
+            $("#error").html("All fields are required");
+            $("#error").css("color", "red");
+        }
+        else {
+            database.ref("/trainData").push({
+                trainName: name,
+                trainDest: dest,
+                trainStartTime: startTime,
+                trainFreq: freq
+            });
+
+            $('#nameInput').val("");
+            $('#destInput').val("");
+            $('#startTimeInput').val("");
+            $('#freqInput').val("");
+            $("#error").html("");
+
+        }
+
+
     });
 });
 
 database.ref("/trainData").on("child_added", function (childSnapshot) {
+    
     // Store everything into a variable.
     var trainName = childSnapshot.val().trainName;
     var trainDest = childSnapshot.val().trainDest;
@@ -55,25 +69,24 @@ database.ref("/trainData").on("child_added", function (childSnapshot) {
     var nextArrival = currentTime.add(minAway, "m").format("h:mm A");
     console.log("nextArr " + nextArrival);
 
-    // Employee Info
-    // console.log(trainName);
-    // console.log(empRole);
-    // console.log(empStart);
-    // console.log(empRate);
-
-    // Prettify the employee start
-    // var empStartPretty = moment.unix(empStart).format("MM/DD/YY");
-
-    // Calculate the months worked using hardcore math
-    // To calculate the months worked
-    // var empMonths = moment().diff(moment.unix(empStart, "X"), "months");
-    // console.log(empMonths);
-
-    // Calculate the total billed rate
-    // var empBilled = empMonths * empRate;
-    // console.log(empBilled);
-
     // Add each train's data into the table
     $("#trainGrid").append("<tr><td>" + trainName + "</td><td>" + trainDest + "</td><td>" +
         trainFreq + "</td><td>" + nextArrival + "</td><td>" + minAway + "</td></tr>");
 });
+
+
+// function startTimer(){
+//     clearInterval(intervalId);
+//     timer = 60;
+//     intervalId = setInterval(timerCountdown, 1000);
+
+// }
+
+// function timerCountdown(){
+//     timer--;
+//     if(timer === 0){
+//         var currentTime = moment().format("hh:mm:ss");
+//         ref.update({lastUpdate: currentTime})
+//         startTimer();        
+//     }
+// }
